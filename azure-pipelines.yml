@@ -68,14 +68,8 @@ stages:
         arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
         zipAfterPublish: true
 
-    - task: PublishPipelineArtifact@1
-      inputs:
-        path: $(System.DefaultWorkingDirectory)/bin/drop
-        artifact: drop
-
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
-
 
 
 - stage: 'Dev'
