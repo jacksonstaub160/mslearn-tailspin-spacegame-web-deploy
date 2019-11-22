@@ -70,8 +70,8 @@ stages:
 
     - task: PublishPipelineArtifact@1
       inputs:
-      path: $(System.DefaultWorkingDirectory)/bin/drop
-      artifact: drop
+        path: $(System.DefaultWorkingDirectory)/bin/drop
+        artifact: drop
 
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
