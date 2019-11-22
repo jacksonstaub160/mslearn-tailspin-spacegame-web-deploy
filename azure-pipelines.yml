@@ -68,13 +68,15 @@ stages:
         arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
         zipAfterPublish: true
 
-    - publish: '$(Build.ArtifactStagingDirectory)'
-      artifact: drop
-      
     - task: PublishPipelineArtifact@1
       inputs:
-      path: $(System.DefaultWorkingDirectory)/bin/WebApp
-      artifact: WebApp
+      path: $(System.DefaultWorkingDirectory)/bin/drop
+      artifact: drop
+
+    - publish: '$(Build.ArtifactStagingDirectory)'
+      artifact: drop
+
+
 
 - stage: 'Dev'
   displayName: 'Deploy to the dev environment'
