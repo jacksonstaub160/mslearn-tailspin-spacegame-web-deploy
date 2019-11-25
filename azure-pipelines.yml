@@ -77,6 +77,16 @@ stages:
         artifactName: 'drop'
         targetPath: '$(Build.ArtifactStagingDirectory)'
 
+    - task: UniversalPackages@0
+      displayName: Universal Publish
+      inputs:
+        command: publish
+        publishDirectory: '$(Build.ArtifactStagingDirectory)'
+        vstsFeedPublish: 'universalpublishfeed'
+        vstsFeedPackagePublish: 'myfirstpackage'
+        vstsPackageVersion: 1.0.0
+        packagePublishDescription: 'packagedescription123'
+
 - stage: 'Dev'
   displayName: 'Deploy to the dev environment'
   dependsOn: Build
