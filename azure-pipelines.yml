@@ -71,20 +71,16 @@ stages:
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
 
-    # task to create the nuget package
-    - task: DotNetCoreCLI@2
-      displayName: "dotnet pack"
+    # task to create the Universal package
+    - task: UniversalPackages@0
+      displayName: Universal Publish
       inputs:
-        command: 'pack'    
-        packagesToPack: '**/*.csproj'
-
-    # task to push the package to the private feed
-    - task: NuGetCommand@2
-      displayName: 'NuGet push'
-      inputs:
-        command: push
-        publishVstsFeed: 'HelpersFeed'
-        allowPackageConflicts: true
+        command: publish
+        publishDirectory: '$(Build.ArtifactStagingDirectory)'
+        vstsFeedPublish: 'HelpersFeed'
+        vstsFeedPackagePublish: 'Package123'
+        versionPublish: 1.0.1
+        packagePublishDescription: '123'
 
 - stage: 'Dev'
   displayName: 'Deploy to the dev environment'
