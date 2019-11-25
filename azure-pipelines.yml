@@ -71,17 +71,6 @@ stages:
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
 
-    # task to create the Universal package
-    - task: UniversalPackages@0
-      displayName: Universal Publish
-      inputs:
-        command: publish
-        publishDirectory: '$(Build.ArtifactStagingDirectory)'
-        vstsFeedPublish: 'HelpersFeed'
-        vstsFeedPackagePublish: 'Package123'
-        versionPublish: 1.0.1
-        packagePublishDescription: '123'
-
 - stage: 'Dev'
   displayName: 'Deploy to the dev environment'
   dependsOn: Build
